@@ -4,7 +4,7 @@ https://flutter.dev/docs/development/ui/interactive#:~:text=A%20widget%20is%20ei
 - lezen over stateless en statefull
 - beginscherm van de voetbal applicatie maken of de´repo clonen en de code snappen
 
-
+```
   // Zet dit in de initState: 
   // SoccerSimulator().start(
   //       speed: 100,
@@ -181,4 +181,6 @@ class SoccerSimulator {
     });
   }
 }
+
+```
 
