@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'backend/SoccerSimulator.dart';
+
 class CountrySelector extends StatelessWidget {
   final Function onCountrySelected;
-  final List countries = ["alb", "nld", "aus", "deu", "usa"];
-  final List countrynames = [
-    "Albanie",
-    "Nederland",
-    "Australie",
-    "Duitsland",
-    "Verenigde Staten"
-  ];
-  
-  CountrySelector({Key key, this.onCountrySelected}) : super(key: key);
+  final List teams;
+
+  CountrySelector({Key key, this.onCountrySelected, this.teams}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return PageView(
         onPageChanged: (page) {
-          onCountrySelected(countrynames[page]);
+          onCountrySelected(teams[page]);
         },
-        children: countries
+        children: teams
             .map(
               (e) => Container(
                 child: Center(
@@ -27,7 +22,7 @@ class CountrySelector extends StatelessWidget {
                     padding: EdgeInsets.all(30),
                     child: Image(
                         image: Image.network(
-                                "https://raw.githubusercontent.com/linssen/country-flag-icons/master/images/png/$e.png")
+                                "https://raw.githubusercontent.com/linssen/country-flag-icons/master/images/png/${e.code}.png")
                             .image),
                   ),
                 ),

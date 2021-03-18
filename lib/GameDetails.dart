@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'GameEndRow.dart';
 import 'GameDetailRow.dart';
 import 'backend/SoccerSimulator.dart';
 
@@ -42,9 +42,10 @@ class _GameDetailsState extends State<GameDetails> {
         controller: _scrollController,
         children: widget.data != null
             ? widget.data
-                .map((Map datarow) => GameDetailRow(
-                    datarow: datarow, teama: widget.teama, teamb: widget.teamb))
-                .toList()
+                .map((Map datarow)  {
+                  return datarow["gametime"] == 90 ? GameEndRow() : datarow["event"]  == null ? Container() : GameDetailRow(
+                    datarow: datarow, teama: widget.teama, teamb: widget.teamb);
+                }).toList()
             : [],
       ),
     );

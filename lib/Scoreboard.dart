@@ -16,10 +16,10 @@ class Scoreboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-          Row(
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Padding(
+          padding: EdgeInsets.only(left: 20, top: 20, right: 20),
+          child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,14 +27,11 @@ class Scoreboard extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    teama,
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
+                  Text(teama, style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold)),
                   Container(height: 20),
                   Text(
                     "$scorea",
-                    style: Theme.of(context).textTheme.headline1,
+                    style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -44,27 +41,28 @@ class Scoreboard extends StatelessWidget {
                 children: [
                   Text(
                     teamb,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold),
                   ),
                   Container(height: 20),
                   Text(
                     "$scoreb",
-                    style: Theme.of(context).textTheme.headline1,
+                    style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ],
               )
             ],
-          ),
-          Container(
-            padding: EdgeInsets.only(top:50),
-            height:80,
-            child:Row(
-            
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Game $gameminute")
-            ],
-          ),)
-        ]);
+          )),
+      Container(
+        padding: EdgeInsets.only(top: 50),
+        height: 80,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("${gameminute.toString().padLeft(2)}",
+                style: Theme.of(context).textTheme.subtitle1)
+          ],
+        ),
+      )
+    ]);
   }
 }

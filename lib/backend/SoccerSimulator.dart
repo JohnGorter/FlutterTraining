@@ -1,28 +1,27 @@
-  // Zet dit in de initState: 
-  // SoccerSimulator().start(
-  //       speed: 100,
-  //       teama: team1,
-  //       teamb: team2,
-  //       func: (state, event) {
-  //         if (event != null) {
-  //           if (event["event"] == SoccerEvent.Goal) {
-  //             if (event["team"] == team1) {
-  //               setState(() {
-  //                 score1++;
-  //               });
-  //             }
-  //             if (event["team"] == team2) {
-  //               setState(() {
-  //                 score2++;
-  //               });
-  //             }
-  //           }
-  //         }
-  //         setState(() {
-  //           gameminute = event["gametime"];
-  //         });
-  //       });
-
+// Zet dit in de initState:
+// SoccerSimulator().start(
+//       speed: 100,
+//       teama: team1,
+//       teamb: team2,
+//       func: (state, event) {
+//         if (event != null) {
+//           if (event["event"] == SoccerEvent.Goal) {
+//             if (event["team"] == team1) {
+//               setState(() {
+//                 score1++;
+//               });
+//             }
+//             if (event["team"] == team2) {
+//               setState(() {
+//                 score2++;
+//               });
+//             }
+//           }
+//         }
+//         setState(() {
+//           gameminute = event["gametime"];
+//         });
+//       });
 
 import 'package:flutter/foundation.dart';
 import 'dart:async';
@@ -56,7 +55,8 @@ enum SoccerEvent {
 class Team {
   int strength;
   String name;
-  Team({this.name = "", this.strength = 0});
+  String code;
+  Team({this.name = "", this.strength = 0, this.code});
   @override
   String toString() {
     // TODO: implement toString
@@ -119,21 +119,33 @@ class SoccerSimulator {
             int player = number + 6;
             eventFunc?.call(state, {
               "event": event,
-              "gametime":  minute >= 45 && minute < 60 ? 45 : minute > 60 ? minute - 15 : minute,
+              "gametime": minute >= 45 && minute < 60
+                  ? 45
+                  : minute > 60
+                      ? minute - 15
+                      : minute,
               "team": team,
               "player": player
             });
             if (math.Random().nextInt(10) % 2 == 0) {
               eventFunc?.call(state, {
                 "event": SoccerEvent.Goal,
-                "gametime":  minute >= 45 && minute < 60 ? 45 : minute > 60 ? minute - 15 : minute,
+                "gametime": minute >= 45 && minute < 60
+                    ? 45
+                    : minute > 60
+                        ? minute - 15
+                        : minute,
                 "team": team,
                 "player": player
               });
             } else {
               eventFunc?.call(state, {
                 "event": SoccerEvent.NearMiss,
-                "gametime":  minute >= 45 && minute < 60 ? 45 : minute > 60 ? minute - 15 : minute,
+                "gametime": minute >= 45 && minute < 60
+                    ? 45
+                    : minute > 60
+                        ? minute - 15
+                        : minute,
                 "team": team,
                 "player": player
               });
@@ -146,14 +158,22 @@ class SoccerSimulator {
                 0) {
               eventFunc?.call(state, {
                 "event": event,
-                "gametime":  minute >= 45 && minute < 60 ? 45 : minute > 60 ? minute - 15 : minute,
+                "gametime": minute >= 45 && minute < 60
+                    ? 45
+                    : minute > 60
+                        ? minute - 15
+                        : minute,
                 "team": team,
                 "player": math.Random().nextInt(5) + 6
               });
             } else {
               eventFunc?.call(state, {
                 "event": SoccerEvent.NearMiss,
-                "gametime":  minute >= 45 && minute < 60 ? 45 : minute > 60 ? minute - 15 : minute,
+                "gametime": minute >= 45 && minute < 60
+                    ? 45
+                    : minute > 60
+                        ? minute - 15
+                        : minute,
                 "team": team,
                 "player": math.Random().nextInt(5) + 6
               });
@@ -161,15 +181,25 @@ class SoccerSimulator {
           } else {
             eventFunc(state, {
               "event": event,
-              "gametime":  minute >= 45 && minute < 60 ? 45 : minute > 60 ? minute - 15 : minute,
-              "team": team, 
+              "gametime": minute >= 45 && minute < 60
+                  ? 45
+                  : minute > 60
+                      ? minute - 15
+                      : minute,
+              "team": team,
               "player": math.Random().nextInt(11) + 1
             });
           }
         }
       }
 
-      eventFunc?.call(state, {"gametime" : minute >= 45 && minute < 60 ? 45 : minute > 60 ? minute - 15 : minute});
+      eventFunc?.call(state, {
+        "gametime": minute >= 45 && minute < 60
+            ? 45
+            : minute > 60
+                ? minute - 15
+                : minute
+      });
       minute++;
     });
   }
